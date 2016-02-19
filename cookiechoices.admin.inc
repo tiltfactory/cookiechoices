@@ -8,10 +8,7 @@
  */
 
 /**
- * cookiechoices_admin_settings function.
- *
- * @access public
- * @return void
+ * Implements admin settings form.
  */
 function cookiechoices_admin_settings() {
   $form = array();
@@ -76,12 +73,10 @@ function cookiechoices_admin_settings() {
 }
 
 /**
- * cookiechoices_admin_settings_validate function.
+ * Admin settings validate.
  *
- * @access public
  * @param mixed $form
  * @param mixed &$form_state
- * @return void
  */
 function cookiechoices_admin_settings_validate($form, &$form_state) {
   // Revert blank fields to default

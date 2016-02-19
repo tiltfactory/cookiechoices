@@ -10,10 +10,7 @@ define('COOKIECHOICES_MORE_URL', 'http://www.allaboutcookies.org/');
 define('COOKIECHOICES_CLOSE_TEXT', t('Ok'));
 
 /**
- * Implements hook_menu().
- *
- * @access public
- * @return void
+ * Implements hook_menu.
  */
 function cookiechoices_menu() {
   $items['admin/config/people/cookiechoices'] = array(
@@ -29,7 +26,7 @@ function cookiechoices_menu() {
 }
 
 /**
- * Implements hook_variable_info
+ * Implements hook_variable_info.
  */
 function cookiechoices_variable_info($options) {
   $variable['cookiechoices_text'] = array(
@@ -65,11 +62,9 @@ function cookiechoices_variable_info($options) {
 }
 
 /**
- * Cookiechoices_preprocess_html function.
+ * Implements hook_preprocess_html.
  *
- * @access public
  * @param mixed &$variables
- * @return void
  */
 function cookiechoices_preprocess_html(&$variables) {
   $module_path = '/'. drupal_get_path('module', 'cookiechoices');
