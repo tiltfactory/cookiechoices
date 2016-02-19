@@ -12,38 +12,37 @@
  */
 function cookiechoices_admin_settings() {
   $form = array();
-  $path = drupal_get_path('module', 'cookiechoices');
 
-  $form['interface'] = array(
+  $form['ui'] = array(
     '#type' => 'fieldset',
-    '#title' => t('User Interface'),
+    '#title' => t('User interface'),
     '#description' => t('Strings are translated. Please add translations in the <a href="@link">Translate interface</a>.<br>Leave the fields blank then save to reset them to default', array('@link' => '/admin/config/regional/translate/translate')),
   );
-  $form['interface']['cookiechoices_text'] = array(
+  $form['ui']['cookiechoices_text'] = array(
     '#type' => 'textarea',
     '#title' => t('Introduction Text'),
     '#default_value' => variable_get('cookiechoices_text', COOKIECHOICES_TEXT),
     '#description' => t('A short message requesting consent to use cookies on this site. HTML markup is allowed for adding links and paragraphs.'),
   );
-  $form['interface']['cookiechoices_more_text'] = array(
+  $form['ui']['cookiechoices_more_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Learn more link text'),
     '#default_value' => variable_get('cookiechoices_more_text', COOKIECHOICES_MORE_TEXT),
     '#description' => t('The label used for "read more about cookies" link'),
   );
-  $form['interface']['cookiechoices_more_url'] = array(
+  $form['ui']['cookiechoices_more_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Learn more link URL'),
     '#default_value' => variable_get('cookiechoices_more_url', COOKIECHOICES_MORE_URL),
     '#description' => t('An external url used for the "read more about cookies" link. Use that synthax: http://url.com.'),
   );
-  $form['interface']['cookiechoices_close_text'] = array(
+  $form['ui']['cookiechoices_close_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Close button text'),
     '#default_value' => variable_get('cookiechoices_close_text', COOKIECHOICES_CLOSE_TEXT),
     '#description' => t('Close link label'),
   );
-  $form['interface']['cookiechoices_theme'] = array(
+  $form['ui']['cookiechoices_theme'] = array(
     '#type' => 'radios',
     '#title' => t('Colour theme'),
     '#description' => t("Choose the colour set used on the widget. Selecting a contrast to your theme will help visitors see the pop-up. Fancy people, choose “none” to style the message yourself."),
@@ -81,18 +80,18 @@ function cookiechoices_admin_settings() {
 function cookiechoices_admin_settings_validate($form, &$form_state) {
   // Revert blank fields to default
   if ($form_state['values']['cookiechoices_text'] == '') {
-    form_set_value($form['interface']['cookiechoices_text'], COOKIECHOICES_TEXT, $form_state);
+    form_set_value($form['ui']['cookiechoices_text'], COOKIECHOICES_TEXT, $form_state);
   }
   if ($form_state['values']['cookiechoices_more_text'] == '') {
-    form_set_value($form['interface']['cookiechoices_more_text'], COOKIECHOICES_MORE_TEXT, $form_state);
+    form_set_value($form['ui']['cookiechoices_more_text'], COOKIECHOICES_MORE_TEXT, $form_state);
   }
   if ($form_state['values']['cookiechoices_more_url'] == '') {
-    form_set_value($form['interface']['cookiechoices_more_url'], COOKIECHOICES_MORE_URL, $form_state);
+    form_set_value($form['ui']['cookiechoices_more_url'], COOKIECHOICES_MORE_URL, $form_state);
   }
   if ($form_state['values']['cookiechoices_close_text'] == '') {
-    form_set_value($form['interface']['cookiechoices_close_text'], COOKIECHOICES_CLOSE_TEXT, $form_state);
+    form_set_value($form['ui']['cookiechoices_close_text'], COOKIECHOICES_CLOSE_TEXT, $form_state);
   }
   
   // Remove any newlines to avoid breaking JavaScript
-  form_set_value($form['interface']['cookiechoices_text'], str_replace(array("\r\n", "\n", "\r"), '', $form_state['values']['cookiechoices_text']), $form_state);
+  form_set_value($form['ui']['cookiechoices_text'], str_replace(array("\r\n", "\n", "\r"), '', $form_state['values']['cookiechoices_text']), $form_state);
 }
