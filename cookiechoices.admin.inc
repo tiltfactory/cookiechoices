@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Implements the configuration of the Cookies Directive pop-up dialog.
@@ -8,15 +9,14 @@
  */
 
 /**
- * Implements admin settings form.
+ * Defines admin settings form.
  */
-function cookiechoices_admin_settings() {
+function cookiechoices_settings_form($form, &$form_state) {
   $form = array();
 
   $form['ui'] = array(
     '#type' => 'fieldset',
     '#title' => t('User interface'),
-    '#description' => t('Strings are translated. Please add translations in the <a href="@link">Translate interface</a>.<br>Leave the fields blank then save to reset them to default', array('@link' => '/admin/config/regional/translate/translate')),
   );
   $form['ui']['cookiechoices_text'] = array(
     '#type' => 'textarea',
@@ -69,29 +69,4 @@ function cookiechoices_admin_settings() {
   );
 
   return system_settings_form($form);
-}
-
-/**
- * Admin settings validate.
- *
- * @param mixed $form
- * @param mixed &$form_state
- */
-function cookiechoices_admin_settings_validate($form, &$form_state) {
-  // Revert blank fields to default
-  if ($form_state['values']['cookiechoices_text'] == '') {
-    form_set_value($form['ui']['cookiechoices_text'], COOKIECHOICES_TEXT, $form_state);
-  }
-  if ($form_state['values']['cookiechoices_more_text'] == '') {
-    form_set_value($form['ui']['cookiechoices_more_text'], COOKIECHOICES_MORE_TEXT, $form_state);
-  }
-  if ($form_state['values']['cookiechoices_more_url'] == '') {
-    form_set_value($form['ui']['cookiechoices_more_url'], COOKIECHOICES_MORE_URL, $form_state);
-  }
-  if ($form_state['values']['cookiechoices_close_text'] == '') {
-    form_set_value($form['ui']['cookiechoices_close_text'], COOKIECHOICES_CLOSE_TEXT, $form_state);
-  }
-  
-  // Remove any newlines to avoid breaking JavaScript
-  form_set_value($form['ui']['cookiechoices_text'], str_replace(array("\r\n", "\n", "\r"), '', $form_state['values']['cookiechoices_text']), $form_state);
 }

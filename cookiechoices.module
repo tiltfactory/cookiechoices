@@ -1,24 +1,25 @@
 <?php
+
 /**
  * @file
- * Implements the display of the Cookie message
- * @todo improve module description
+ * Makes a website compliant with the European Commission's cookies reglementation. Uses Google's <a href="https://www.cookiechoices.org/#resources">cookiechoices</a>.
  */
+
 define('COOKIECHOICES_TEXT', t('By using our website you are consenting to our use of cookies.'));
 define('COOKIECHOICES_MORE_TEXT', t('Learn more'));
 define('COOKIECHOICES_MORE_URL', 'http://www.allaboutcookies.org/');
 define('COOKIECHOICES_CLOSE_TEXT', t('Ok'));
 
 /**
- * Implements hook_menu.
+ * Implements hook_menu().
  */
 function cookiechoices_menu() {
-  $items['admin/config/people/cookiechoices'] = array(
+  $items['admin/config/user-interface/cookiechoices/settings'] = array(
     'title' => 'Cookie Choices configuration',
     'description' => 'Configure cookie notification bar.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('cookiechoices_admin_settings'),
-    'access arguments' => array('administer users'),
+    'page arguments' => array('cookiechoices_settings_form'),
+    'access arguments' => array('administer site configuration'),
     'file' => 'cookiechoices.admin.inc',
     'weight' => 0,
   );
@@ -26,7 +27,7 @@ function cookiechoices_menu() {
 }
 
 /**
- * Implements hook_variable_info.
+ * Implements hook_variable_info().
  */
 function cookiechoices_variable_info($options) {
   $variable['cookiechoices_text'] = array(
@@ -57,7 +58,6 @@ function cookiechoices_variable_info($options) {
     'default' => COOKIECHOICES_CLOSE_TEXT,
     'localize' => TRUE,
   );
-
   return $variable;
 }
 
@@ -127,6 +127,5 @@ function cookiechoices_preprocess_html(&$variables) {
     }
 
     drupal_add_js( array ("cookiechoices" => $cookiechoices_theme), 'setting');
-
   }
 }
