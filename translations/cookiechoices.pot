@@ -1,0 +1,134 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  cookiechoices.admin.inc: n/a
+#  cookiechoices.module: n/a
+#  cookiechoices.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-06-04 15:09+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: cookiechoices.admin.inc:22
+msgid "User Interface"
+msgstr ""
+
+#: cookiechoices.admin.inc:23
+msgid "Strings are translated. Please add translations in the <a href=\"@link\">Translate interface</a>.<br>Leave the fields blank then save to reset them to default"
+msgstr ""
+
+#: cookiechoices.admin.inc:27 cookiechoices.module:38
+msgid "Introduction Text"
+msgstr ""
+
+#: cookiechoices.admin.inc:29
+msgid "A short message requesting consent to use cookies on this site. HTML markup is allowed for adding links and paragraphs."
+msgstr ""
+
+#: cookiechoices.admin.inc:33
+msgid "Learn more link text"
+msgstr ""
+
+#: cookiechoices.admin.inc:35
+msgid "The label used for \"read more about cookies\" link"
+msgstr ""
+
+#: cookiechoices.admin.inc:39
+msgid "Learn more link URL"
+msgstr ""
+
+#: cookiechoices.admin.inc:41
+msgid "An external url used for the \"read more about cookies\" link. Use that synthax: http://url.com."
+msgstr ""
+
+#: cookiechoices.admin.inc:45 cookiechoices.module:59
+msgid "Close button text"
+msgstr ""
+
+#: cookiechoices.admin.inc:47
+msgid "Close link label"
+msgstr ""
+
+#: cookiechoices.admin.inc:52
+msgid "Colour theme"
+msgstr ""
+
+#: cookiechoices.admin.inc:53
+msgid "Choose the colour set used on the widget. Selecting a contrast to your theme will help visitors see the pop-up. Fancy people, choose “none” to style the message yourself."
+msgstr ""
+
+#: cookiechoices.admin.inc:56
+msgid "Dark"
+msgstr ""
+
+#: cookiechoices.admin.inc:57
+msgid "Light"
+msgstr ""
+
+#: cookiechoices.admin.inc:58
+msgid "None"
+msgstr ""
+
+#: cookiechoices.module:9
+msgid "By using our website you are consenting to our use of cookies."
+msgstr ""
+
+#: cookiechoices.module:10
+msgid "Learn more"
+msgstr ""
+
+#: cookiechoices.module:12
+msgid "Ok"
+msgstr ""
+
+#: cookiechoices.module:39
+msgid "A short message requesting consent to use cookies on this site."
+msgstr ""
+
+#: cookiechoices.module:45
+msgid "More link label"
+msgstr ""
+
+#: cookiechoices.module:46
+msgid "The label used for \"read more about cookies\" link."
+msgstr ""
+
+#: cookiechoices.module:52
+msgid "More link url"
+msgstr ""
+
+#: cookiechoices.module:53
+msgid "The url used for the \"read more about cookies\" link"
+msgstr ""
+
+#: cookiechoices.module:60
+msgid "The label used for the close link"
+msgstr ""
+
+#: cookiechoices.module:21
+msgid "Cookie Choices configuration"
+msgstr ""
+
+#: cookiechoices.module:22
+msgid "Configure cookie notification bar."
+msgstr ""
+
+#: cookiechoices.info:0
+msgid "Cookies Choices"
+msgstr ""
+
+#: cookiechoices.info:0
+msgid "Make the website comply with the European Commission's cookies reglementation. Uses Google's <a href=\"https://www.cookiechoices.org/#resources\">cookiechoices</a>"
+msgstr ""
+

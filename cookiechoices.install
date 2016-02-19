@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Implements the module uninstallation process
+ *
+ */
+ 
+function cookiechoices_uninstall() {
+  variable_del('cookiechoices_text');
+  variable_del('cookiechoices_more_text');
+  variable_del('cookiechoices_more_url');
+  variable_del('cookiechoices_close_text');
+  variable_del('cookiechoices_theme');
+  variable_del('cookiechoices_exclude_paths');
+}

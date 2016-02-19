@@ -1,0 +1,137 @@
+<?php
+/**
+ * @file
+ * Implements the display of the Cookie message
+ * @todo improve module description
+ */
+define('COOKIECHOICES_TEXT', t('By using our website you are consenting to our use of cookies.'));
+define('COOKIECHOICES_MORE_TEXT', t('Learn more'));
+define('COOKIECHOICES_MORE_URL', 'http://www.allaboutcookies.org/');
+define('COOKIECHOICES_CLOSE_TEXT', t('Ok'));
+
+/**
+ * Implements hook_menu().
+ *
+ * @access public
+ * @return void
+ */
+function cookiechoices_menu() {
+  $items['admin/config/people/cookiechoices'] = array(
+    'title' => 'Cookie Choices configuration',
+    'description' => 'Configure cookie notification bar.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cookiechoices_admin_settings'),
+    'access arguments' => array('administer users'),
+    'file' => 'cookiechoices.admin.inc',
+    'weight' => 0,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_variable_info
+ */
+function cookiechoices_variable_info($options) {
+  $variable['cookiechoices_text'] = array(
+    'title' => t('Introduction Text'),
+    'description' => t('A short message requesting consent to use cookies on this site.'),
+    'type' => 'string',
+    'default' => COOKIECHOICES_TEXT,
+    'localize' => TRUE,
+  );
+  $variable['cookiechoices_more_text'] = array(
+    'title' => t('More link label'),
+    'description' => t('The label used for "read more about cookies" link.'),
+    'type' => 'string',
+    'default' => COOKIECHOICES_MORE_TEXT,
+    'localize' => TRUE,
+  );
+  $variable['cookiechoices_more_url'] = array(
+    'title' => t('More link url'),
+    'description' => t('The url used for the "read more about cookies" link'),
+    'type' => 'string',
+    'default' => COOKIECHOICES_MORE_URL,
+    'localize' => TRUE,
+  );
+  $variable['cookiechoices_close_text'] = array(
+    'title' => t('Close button text'),
+    'description' => t('The label used for the close link'),
+    'type' => 'string',
+    'default' => COOKIECHOICES_CLOSE_TEXT,
+    'localize' => TRUE,
+  );
+
+  return $variable;
+}
+
+/**
+ * Cookiechoices_preprocess_html function.
+ *
+ * @access public
+ * @param mixed &$variables
+ * @return void
+ */
+function cookiechoices_preprocess_html(&$variables) {
+  $module_path = '/'. drupal_get_path('module', 'cookiechoices');
+
+  // don't render on admin pages or excluded paths
+  if (path_is_admin(current_path()) === FALSE && drupal_match_path(current_path(), variable_get('cookiechoices_exclude_paths', '')) === FALSE) {
+
+    drupal_add_js($module_path . '/js/cookiechoices.js');
+
+    $cc_text = addslashes(t(variable_get('cookiechoices_text', COOKIECHOICES_TEXT)));
+
+    // Escape anything that might cause a JavaScript error
+    $cc_text = str_replace(array("\r\n", "\n", "\r", '  '), '', $cc_text);
+
+    $cc_more_text = addslashes(t(variable_get('cookiechoices_more_text', COOKIECHOICES_MORE_TEXT)));
+    $cc_more_url = variable_get('cookiechoices_more_url', COOKIECHOICES_MORE_URL);
+
+    $cc_close_text = variable_get('cookiechoices_close_text', COOKIECHOICES_CLOSE_TEXT);
+
+    $cookiechoices_settings = "
+      document.addEventListener('DOMContentLoaded', function(event) {
+        cookieChoices.showCookieConsentBar('". $cc_text ."',
+          '". $cc_close_text ."', '". $cc_more_text ."', '". $cc_more_url ."');
+      });
+    ";
+    drupal_add_js($cookiechoices_settings, array(
+      'type' => 'inline',
+      'preprocess' => TRUE,
+      'scope' => 'footer',
+      'group' => JS_DEFAULT,
+      'every_page' => TRUE,
+      'cache' => TRUE,
+    ));
+
+    // Theme
+    // @todo print all styles from the module keeping the .js logic alone?
+    // 1. remove the cookieChoiceInfo styles passed by google's script
+    // 2. pass the theme styles with drupal_add_js inline script
+    $cookiechoices_theme = variable_get('cookiechoices_theme', 'dark');
+    $bg_url = $module_path . '/images/cookie.png';
+    switch ($cookiechoices_theme) {
+      case 'dark':
+        $ccBarStyles = "background:#5a5a5a url({$bg_url}) no-repeat 5px center;color: #fff;font-size:13px;left:0;margin:0;padding:12px 8px 12px 50px;text-align:left;top:0;font-weight:bold;width:100%;z-index:1000;";
+        $ccBtnsStyle = 'background-color: #333;color: #fff; padding:5px;margin-left: 8px;text-decoration:none;';
+        break;
+      case 'light':
+        $ccBarStyles = "background:#eee url({$bg_url}) no-repeat 5px center;font-size:13px;left:0;margin:0;padding:12px 8px 12px 50px;top:0;width:100%;z-index:1000;";
+        $ccBtnsStyle = 'background-color: #ccc;color: #333; padding:5px;margin-left: 8px;text-decoration:none;';
+        break;
+      default:
+        break;
+    }
+
+    // Pass the theme variables to cookiechoices script
+    if($cookiechoices_theme != 'none') {
+      $cookiechoices_theme = array (
+        'ccBarStyles' => $ccBarStyles,
+        'ccBtnsStyle' => $ccBtnsStyle,
+      );
+    }
+
+    drupal_add_js( array ("cookiechoices" => $cookiechoices_theme), 'setting');
+
+  }
+}

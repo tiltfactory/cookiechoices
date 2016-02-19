@@ -1,0 +1,4 @@
+name = Cookies Choices
+description = Makes a website compliant with the European Commission's cookies reglementation. Uses Google's <a href="https://www.cookiechoices.org/#resources">cookiechoices</a>.
+core = 7.x
+configure = admin/config/people/cookiechoices
