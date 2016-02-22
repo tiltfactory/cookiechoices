@@ -16,4 +16,4 @@ drush en cookiechoices
 
 Remove .git directory in the module to sync it via the main repo.
 
-Configure at admin/config/user-interface/cookiechoices/settings.
+Optional configuration (light or dark theme, text and link) at admin/config/user-interface/cookiechoices/settings.
