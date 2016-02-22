@@ -14,4 +14,5 @@ git clone git@github.com:tiltfactory/cookiechoices.git
 drush en cookiechoices
 ```
 
+Remove .git directory in the module to sync it via the main repo.
 Configure at admin/config/user-interface/cookiechoices/settings.
