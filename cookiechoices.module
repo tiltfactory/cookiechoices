@@ -67,7 +67,7 @@ function cookiechoices_variable_info($options) {
  * @param mixed &$variables
  */
 function cookiechoices_preprocess_html(&$variables) {
-  $module_path = '/'. drupal_get_path('module', 'cookiechoices');
+  $module_path = drupal_get_path('module', 'cookiechoices');
 
   // don't render on admin pages or excluded paths
   if (path_is_admin(current_path()) === FALSE && drupal_match_path(current_path(), variable_get('cookiechoices_exclude_paths', '')) === FALSE) {
