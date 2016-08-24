@@ -44,12 +44,13 @@ function cookiechoices_settings_form($form, &$form_state) {
   );
   $form['ui']['cookiechoices_theme'] = array(
     '#type' => 'radios',
-    '#title' => t('Colour theme'),
-    '#description' => t("Choose the colour set used on the widget. Selecting a contrast to your theme will help visitors see the pop-up. Fancy people, choose “none” to style the message yourself."),
+    '#title' => t('Theme'),
+    '#description' => t("Choose a theme for the widget. Contrasted, bottom fixed (for websites with, e.g., sticky header) or choose “none” to style the message yourself."),
     '#default_value' => variable_get('cookiechoices_theme', 'dark'),
     '#options' => array(
       'dark' => t('Dark'),
       'light' => t('Light'),
+      'fixed' => t('Fixed'),
       'none' => t('None'),
     )
   );
